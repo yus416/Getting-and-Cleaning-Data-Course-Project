@@ -18,7 +18,6 @@ from the time and frequency domain.
 
 Files prepared for the Course Progect:
 1. run_analysis.R  Contains R scripts for the dataset conversion
-2. mean_data2_final.csv   Is the independent tidy data set with the average of each variable for each activity and each subject.
-3. tidy_dataset_preview_only.csv  30x6 sample (abbreviated version) of mean_data2_final.csv dataset
-4. README.md
-5. CodeBook.md   Code book that describes the variables, the data, and any transformations or work that was performed to clean up the data
+2. mean_data2_final.txt   Is the independent tidy data set with the average of each variable for each activity and each subject.
+3. README.md
+4. CodeBook.md   Code book that describes the variables, the data, and any transformations or work that was performed to clean up the data
