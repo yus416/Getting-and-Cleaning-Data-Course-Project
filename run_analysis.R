@@ -55,29 +55,16 @@ colnames(x_train_formatted)[2] <- "act_labels"
 combo <- rbind(x_test_formatted, x_train_formatted)
 unique(combo$act_labels)
 
-write.csv(combo, file = "combo.csv", row.names = FALSE)
+#write.csv(combo, file = "combo.csv", row.names = FALSE)
 
-# Extracting only the measurements on the mean and standard deviation for each measurement (assuming activities)
+# Extracts only the measurements on the mean and standard deviation for each measurement
+combo_names <- names(combo)
 
+col <- grep("mean|std|subject|act_labels", combo_names)
+class(col)
 
-#Calculation of Means
+combo <- combo[, ..col]
 
-activities <- unique(combo$act_labels)
-mean_data <- t(sapply(unique(activities),function(activ){
-        colMeans(combo[combo$act_labels == activ,-(1:2)])
-}))
-rownames(mean_data) <- activities
-
-mean_data
-
-#Calculation of Standard Deviations
-
-stdev_data <- t(sapply(unique(activities),function(activ){
-        sd_col(combo[combo$act_labels == activ,-(1:2)])
-}))
-rownames(stdev_data) <- activities
-
-stdev_data
 
 #create a second, independent tidy data set with the average of each variable for each activity and each subject.
 
@@ -100,6 +87,7 @@ colnames(new_col2_df) <- c("subject", "activity")
 mean_data2 <- as.data.frame(mean_data2)
 mean_data2_final <- cbind(new_col2_df, mean_data2)
 
-write.csv(mean_data2_final, "mean_data2_final.csv", row.names = FALSE)
+#write.csv(mean_data2_final, "mean_data2_final.csv", row.names = FALSE)
 
+write.table(mean_data2_final, "mean_data2_final.txt", row.names = FALSE, sep = "\t")
 
